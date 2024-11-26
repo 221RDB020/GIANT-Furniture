@@ -79,7 +79,6 @@ const dropBtnText = document.querySelector('.sort-drop-text');
 const dropList = document.querySelector('.drop-list');
 let sortOptions = null;
 
-
 function sortControls() {
     if (dropBtn.getAttribute('aria-expanded') === 'true') {
         dropBtn.setAttribute('aria-expanded', 'false');
@@ -112,7 +111,11 @@ if (dropBtn) {
         option.addEventListener('click', chooseSortOption);
 
         if (params.has('sortBy')) {
-            if (params.get('sortBy').split(',')[0] === option.getAttribute('name')) {
+            if (params.get('sortBy').split(',')[0] === "price") {
+                if (params.get('sortBy').split(',')[1] === option.getAttribute('data-order')) {
+                    dropBtnText.innerHTML = option.innerHTML;
+                }
+            } else if (params.get('sortBy').split(',')[0] === option.getAttribute('name')) {
                 dropBtnText.innerHTML = option.innerHTML;
             }
         }

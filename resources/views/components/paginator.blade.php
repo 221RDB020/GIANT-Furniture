@@ -34,7 +34,7 @@
             @else
                 @if ($paginator->lastPage() > 2)
                     {{-- All Page Links --}}
-                    @foreach ($paginator->getUrlRange(1, $paginator->lastPage() - 1) as $page => $url)
+                    @foreach ($paginator->getUrlRange(2, $paginator->lastPage() - 1) as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <span class="active">{{ $page }}</span>
                         @else

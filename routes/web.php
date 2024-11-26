@@ -9,14 +9,13 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Wishlist\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\SearchController;
-
-Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/categories/{category}', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/categories/{category}/{product}', [ShopController::class, 'show'])->name('shop.show');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart', [CartController::class, 'store'])->name('cart.add');

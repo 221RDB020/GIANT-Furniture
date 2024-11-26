@@ -23,7 +23,7 @@ class ShopController extends Controller
         $category = $allCategories->where('slug', $category)->first();
         $mainCategories = $allCategories->whereNull('parent_id')->all();
 
-        $products = $this->productService->getProducts($category, $request);
+        $products = $this->productService->getProducts($request, $category);
 
         $minMaxDimensions = Product::getMaxMinDimensions($category);
         $productsCount = $products->get()->count();

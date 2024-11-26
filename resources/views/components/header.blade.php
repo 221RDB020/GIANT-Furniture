@@ -10,20 +10,20 @@
             </span>
         </button>
         <div class="search-box">
-    <form action="{{ route('search') }}" method="GET">
-        <input
-            type="text"
-            name="query"
-            placeholder="Search..."
-            class="search-input"
-            aria-label="Search"
-            required
-        />
-        <button type="submit" class="search-button">
-            <x-carbon-search class="search-icon" />
-        </button>
-    </form>
-</div>
+            <form action="{{ route('search') }}" method="GET">
+                <input
+                    type="text"
+                    name="query"
+                    placeholder="Search"
+                    class="search-input"
+                    aria-label="Search"
+                    required
+                />
+                <button type="submit" class="search-button">
+                    <x-carbon-search class="search-icon" />
+                </button>
+            </form>
+        </div>
     </div>
     <div class="logo"><a href="{{route('home')}}">GIANT</a></div>
     <div class="right">

@@ -107,13 +107,24 @@
         }
         .search-box {
             display: flex;
-            align-items: center;
-            gap: 1rem;
             cursor: pointer;
-            padding-left: 6rem;
-
-            span {
-                font-size: .875rem;
+            padding-left: 8rem;
+            form {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                .search-input {
+                    padding: .5rem 1rem;
+                    border: 1px solid #E1E1E1;
+                    border-radius: 10px;
+                    outline: none;
+                    &:focus {
+                        border-color: #000;
+                    }
+                }
+                span {
+                    font-size: .875rem;
+                }
             }
         }
     }
