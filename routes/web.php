@@ -9,6 +9,9 @@ use App\Http\Controllers\Wishlist\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SearchController;
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::get('/', HomeController::class)->name('home');
 Route::get('/categories/{category}', [ShopController::class, 'index'])->name('shop.index');
