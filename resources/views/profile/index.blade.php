@@ -17,8 +17,11 @@
                 <div class="content-box">
                     <h4>Personal Information</h4>
                     <div class="content-box__content">
-                        <form action="" method="post">
+                        <form action="{{route('profile.update')}}" method="post">
                             <span>Mandatory fields*</span>
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{$profile->id}}">
                             <span class="label">Title*</span>
                             <select name="title" id="title">
                                 <option value="{{$profile->title}}">{{$profile->title}}</option>
@@ -93,21 +96,22 @@
                                 <span>You don't have any address saved</span>
                             @endif
                         </div>
-                        <form action="" method="post">
+                        <form action="{{route('profile.addAddress')}}" method="post">
                             @csrf
-                            @method("PUT")
                             <div class="flex-wrap">
+                                <input type="hidden" name="user_id" value="{{$profile->id}}">
+                                <input type="hidden" name="country" value="{{$profile->country_region()->id}}">
                                 <div>
                                     <span>City*</span>
                                     <input type="text" name="city" id="city">
                                 </div>
                                 <div>
                                     <span>Address*</span>
-                                    <input type="text" name="street" id="street">
+                                    <input type="text" name="address" id="address">
                                 </div>
                                 <div>
                                     <span>Apartment, suite, etc.</span>
-                                    <input type="text" name="house_number" id="house_number">
+                                    <input type="text" name="apartment" id="apartment">
                                 </div>
                                 <div>
                                     <span>Postal code*</span>

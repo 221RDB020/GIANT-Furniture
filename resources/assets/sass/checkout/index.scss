@@ -1,0 +1,53 @@
+.checkout-content {
+  display: flex;
+  flex: 1;
+  .checkout-form {
+    display: flex;
+    flex: .7;
+    padding-right: 3rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        align-items: center;
+        :last-child {
+          font-size: .875rem;
+        }
+      }
+      .button-group {
+        display: flex;
+        flex: 1;
+        gap: 1rem;
+        .btn-d-opt {
+          display: flex;
+          gap: .5rem;
+          align-items: center;
+          justify-content: center;
+          height: 5rem;
+          flex: 1;
+          border: 1px solid #e1e1e1;
+          border-radius: 10px;
+          * {
+            pointer-events: none;
+          }
+          &[aria-checked="true"] {
+            border: 1px solid #000;
+          }
+          &[disabled] {
+            cursor: not-allowed;
+            svg {
+              fill: #e1e1e1;
+            }
+            span {
+              color: #e1e1e1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +52,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function orders(): HasMany {
+        return $this->hasMany(Order::class);
+    }
+
     public function country_region()
     {
         return DB::table('country_regions')->where('id', $this->country_region)->first();
@@ -60,7 +65,6 @@ class User extends Authenticatable
     {
         $addressIds = json_decode($this->address_ids, true);
 
-        // Check if $addressIds is a valid array; if not, return an empty collection
         if (empty($addressIds) || !is_array($addressIds)) {
             return collect();
         }

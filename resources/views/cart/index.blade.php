@@ -104,7 +104,7 @@
                         </span>
                     </div>
                     <div class="wrap">
-                        <button type="submit" aria-checked="false" class="primary-btn">Checkout</button>
+                        <a href="{{route('checkout.index')}}" aria-checked="false" class="primary-btn">Checkout</a>
                     </div>
                 </div>
             </div>

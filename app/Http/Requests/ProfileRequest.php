@@ -22,14 +22,14 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'title' => ['required', 'string', 'max:64'],
-            'country_region' => ['required', 'int'],
-            'address_ids' => ['required', 'JSON'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => ['required', 'string', 'max:64'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'title' => 'required|string|max:64',
+            'country_region' => 'required|int',
+            'address_ids' => 'required|JSON',
+            'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'required|string|max:64',
+            'password' => 'required|string|min:8',
         ];
     }
 }
