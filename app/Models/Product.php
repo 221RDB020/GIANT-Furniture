@@ -108,12 +108,12 @@ class Product extends Model
             return DB::table('products')
                 ->whereIn('category_id', $categoryIds)
                 ->select(DB::raw('
-                MAX(CAST(json_extract(specification, "$.height") AS INTEGER)) as max_height,
-                MIN(CAST(json_extract(specification, "$.height") AS INTEGER)) as min_height,
-                MAX(CAST(json_extract(specification, "$.width") AS INTEGER)) as max_width,
-                MIN(CAST(json_extract(specification, "$.width") AS INTEGER)) as min_width,
-                MAX(CAST(json_extract(specification, "$.length") AS INTEGER)) as max_length,
-                MIN(CAST(json_extract(specification, "$.length") AS INTEGER)) as min_length
+                MAX(CAST(json_extract(specification, "$.height") AS UNSIGNED)) as max_height,
+                MIN(CAST(json_extract(specification, "$.height") AS UNSIGNED)) as min_height,
+                MAX(CAST(json_extract(specification, "$.width") AS UNSIGNED)) as max_width,
+                MIN(CAST(json_extract(specification, "$.width") AS UNSIGNED)) as min_width,
+                MAX(CAST(json_extract(specification, "$.length") AS UNSIGNED)) as max_length,
+                MIN(CAST(json_extract(specification, "$.length") AS UNSIGNED)) as min_length
             '))->first();
         }
 
@@ -122,24 +122,24 @@ class Product extends Model
             return DB::table('products')
                 ->whereIn('category_id', $categoryIds)
                 ->select(DB::raw('
-                MAX(CAST(json_extract(specification, "$.height") AS INTEGER)) as max_height,
-                MIN(CAST(json_extract(specification, "$.height") AS INTEGER)) as min_height,
-                MAX(CAST(json_extract(specification, "$.width") AS INTEGER)) as max_width,
-                MIN(CAST(json_extract(specification, "$.width") AS INTEGER)) as min_width,
-                MAX(CAST(json_extract(specification, "$.length") AS INTEGER)) as max_length,
-                MIN(CAST(json_extract(specification, "$.length") AS INTEGER)) as min_length
+                MAX(CAST(json_extract(specification, "$.height") AS UNSIGNED)) as max_height,
+                MIN(CAST(json_extract(specification, "$.height") AS UNSIGNED)) as min_height,
+                MAX(CAST(json_extract(specification, "$.width") AS UNSIGNED)) as max_width,
+                MIN(CAST(json_extract(specification, "$.width") AS UNSIGNED)) as min_width,
+                MAX(CAST(json_extract(specification, "$.length") AS UNSIGNED)) as max_length,
+                MIN(CAST(json_extract(specification, "$.length") AS UNSIGNED)) as min_length
             '))->first();
         }
 
         return DB::table('products')
             ->where('category_id', $category->id)
             ->select(DB::raw('
-            MAX(CAST(json_extract(specification, "$.height") AS INTEGER)) as max_height,
-            MIN(CAST(json_extract(specification, "$.height") AS INTEGER)) as min_height,
-            MAX(CAST(json_extract(specification, "$.width") AS INTEGER)) as max_width,
-            MIN(CAST(json_extract(specification, "$.width") AS INTEGER)) as min_width,
-            MAX(CAST(json_extract(specification, "$.length") AS INTEGER)) as max_length,
-            MIN(CAST(json_extract(specification, "$.length") AS INTEGER)) as min_length
+            MAX(CAST(json_extract(specification, "$.height") AS UNSIGNED)) as max_height,
+            MIN(CAST(json_extract(specification, "$.height") AS UNSIGNED)) as min_height,
+            MAX(CAST(json_extract(specification, "$.width") AS UNSIGNED)) as max_width,
+            MIN(CAST(json_extract(specification, "$.width") AS UNSIGNED)) as min_width,
+            MAX(CAST(json_extract(specification, "$.length") AS UNSIGNED)) as max_length,
+            MIN(CAST(json_extract(specification, "$.length") AS UNSIGNED)) as min_length
         '))->first();
     }
 

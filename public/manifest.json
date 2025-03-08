@@ -1,0 +1,45 @@
+{
+    "name": "GIANT - mēbeles",
+    "short_name": "GIANT",
+    "display": "standalone",
+    "id": "/",
+    "start_url": "http://127.0.0.1:8000",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "/assets/icon/icon-64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icon/icon-128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icon/icon-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/icon/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/assets/screenshots/397x687.png",
+            "type": "image/png",
+            "sizes": "397x687",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/assets/screenshots/1903x1054.png",
+            "type": "image/png",
+            "sizes": "1903x1054",
+            "form_factor": "wide"
+        }
+    ]
+}

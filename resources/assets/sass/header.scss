@@ -1,5 +1,5 @@
 .main-header {
-    height: 5.5rem;
+    height: 4rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -10,6 +10,9 @@
     top: 0;
     left: 0;
     z-index: 100;
+    @media (min-width: $breakpoint-md) {
+        height: var(--header-height);
+    }
     .left {
         display: flex;
         flex: 1;
@@ -26,9 +29,12 @@
             border: none;
             outline: none;
             .mobile-menu-options {
-                display: flex;
+                display: none;
                 flex-direction: column;
                 align-self: flex-start;
+                @media (min-width: $breakpoint-md) {
+                    display: flex;
+                }
             }
             .mobile-menu-icon {
                 display: inline-block;
@@ -106,9 +112,12 @@
             }
         }
         .search-box {
-            display: flex;
+            display: none;
             cursor: pointer;
             padding-left: 8rem;
+            @media (min-width: $breakpoint-md) {
+                display: flex;
+            }
             form {
                 display: flex;
                 align-items: center;
@@ -146,6 +155,10 @@
         gap: 1.5rem;
         justify-content: flex-end;
         .contact {
+            display: none;
+            @media (min-width: $breakpoint-md) {
+                display: flex;
+            }
             p {
                 font-size: .875rem;
                 cursor: pointer;

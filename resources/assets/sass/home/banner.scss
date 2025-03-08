@@ -1,8 +1,11 @@
 .banner {
-    height: calc(100vh - var(--header-height) * 2);
+    height: calc(100vh - var(--header-height-sm));
     overflow: hidden;
     position: relative;
     display: block;
+    @media (min-width: $breakpoint-md) {
+        height: calc(100vh - var(--header-height) * 2);
+    }
     &::before {
         position: absolute;
         content: '';

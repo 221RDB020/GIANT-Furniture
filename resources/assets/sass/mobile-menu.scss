@@ -9,32 +9,36 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity ease-in-out 0.2s, visibility 0s 0.2s;
-    background: linear-gradient(0deg, rgba(0,0,0,.98) 20%, rgba(0,0,0,.8));
+    background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.98) 20%,
+        rgba(0, 0, 0, 0.8)
+    );
     .side-container {
         position: absolute;
         top: 0;
         left: 0;
         bottom: 0;
         width: 100vw;
+        background: #ffffff;
+        transition: transform ease-in-out 0.2s;
+        overflow-y: auto;
         @media (min-width: $breakpoint-md) {
             width: 50vw;
         }
         @media (min-width: $breakpoint-lg) {
             width: 30vw;
         }
-        background: #ffffff;
-        transition: transform ease-in-out 0.2s;
-        overflow-y: auto;
         .options {
             display: flex;
             flex-direction: column;
             padding-inline: var(--padding-side);
             padding-top: var(--header-height);
             padding-bottom: 2.5rem;
-            border-bottom: 1px solid #E1E1E1;
+            border-bottom: 1px solid #e1e1e1;
             .opt-box {
                 display: flex;
-                padding-block: .75rem;
+                padding-block: 0.75rem;
                 justify-content: space-between;
                 align-items: center;
                 .option {
@@ -43,13 +47,13 @@
                     padding-bottom: 4px;
                     font-size: 1.5rem;
                     font-weight: 400;
-                    letter-spacing: -.025rem;
+                    letter-spacing: -0.025rem;
                     line-height: 1.75rem;
                     &::after {
                         position: absolute;
                         left: 0;
                         bottom: 0;
-                        content: '';
+                        content: "";
                         width: 0;
                         height: 1px;
                         background-color: black;
@@ -58,7 +62,8 @@
                 }
                 &:hover {
                     .arrow-right {
-                        &::before, &::after {
+                        &::before,
+                        &::after {
                             opacity: 1;
                         }
                     }
@@ -67,7 +72,7 @@
                             position: absolute;
                             left: 0;
                             bottom: 0;
-                            content: '';
+                            content: "";
                             width: 100%;
                             height: 1px;
                             background-color: black;
@@ -84,29 +89,29 @@
             a {
                 font-size: 1rem;
                 font-weight: 400;
-                letter-spacing: -.025rem;
+                letter-spacing: -0.025rem;
                 line-height: 1.25rem;
-                padding: .5rem 0;
+                padding: 0.5rem 0;
             }
         }
     }
     /* Open state */
     &[aria-expanded="true"] {
-        .side-container {
-            transform: translateX(0);
-        }
         visibility: visible;
         opacity: 1;
         transition: opacity ease-in-out 0.2s;
+        .side-container {
+            transform: translateX(0);
+        }
     }
 
     /* Close state */
     &[aria-expanded="false"] {
+        opacity: 0;
+        transition: opacity ease-in-out 0.2s, visibility 0s 0.2s;
         .side-container {
             transform: translateX(-100%);
         }
-        opacity: 0;
-        transition: opacity ease-in-out 0.2s, visibility 0s 0.2s;
     }
 }
 
@@ -116,13 +121,13 @@
         left: unset;
         right: 0;
         width: 100vw;
+        padding: 0;
         @media (min-width: $breakpoint-md) {
             width: 80vw;
         }
         @media (min-width: $breakpoint-lg) {
             width: 50vw;
         }
-        padding: 0;
         .header {
             display: flex;
             align-items: center;
@@ -131,7 +136,7 @@
             padding-inline: var(--padding-side-lg);
             h4 {
                 font-size: 1.125rem;
-                letter-spacing: -.05rem;
+                letter-spacing: -0.05rem;
                 line-height: 1.5rem;
             }
             span {
@@ -148,26 +153,25 @@
             border-bottom: 1px solid #e1e1e1;
             h4 {
                 font-size: 1.125rem;
-                letter-spacing: -.05rem;
+                letter-spacing: -0.05rem;
                 line-height: 1.5rem;
                 margin-bottom: 1.5rem;
-
             }
             span {
                 display: inline-block;
                 min-width: 100%;
                 text-align: right;
-                font-size: .875rem;
-                letter-spacing: -.025rem;
+                font-size: 0.875rem;
+                letter-spacing: -0.025rem;
                 line-height: 1.25rem;
             }
             div {
                 label {
                     display: inline-block;
-                    font-size: .875rem;
-                    letter-spacing: -.05rem;
+                    font-size: 0.875rem;
+                    letter-spacing: -0.05rem;
                     line-height: 1.25rem;
-                    margin-bottom: .5rem;
+                    margin-bottom: 0.5rem;
                 }
                 div {
                     position: relative;
@@ -178,13 +182,14 @@
                         background: #fff;
                         background-clip: padding-box;
                         border: 1px solid #e1e1e1;
-                        border-radius: .25rem;
+                        border-radius: 0.25rem;
                         box-shadow: none;
                         padding: 0 1rem;
-                        transition: border .3s cubic-bezier(.39,.575,.565,1);
+                        transition: border 0.3s
+                            cubic-bezier(0.39, 0.575, 0.565, 1);
                         color: #000;
                         font-size: 1rem;
-                        letter-spacing: -.05rem;
+                        letter-spacing: -0.05rem;
                         line-height: 3rem;
                         outline: none;
                         &:hover {
@@ -211,8 +216,8 @@
                     }
                 }
                 .pass-reset {
-                    font-size: .875rem;
-                    letter-spacing: -.05rem;
+                    font-size: 0.875rem;
+                    letter-spacing: -0.05rem;
                     line-height: 1.25rem;
                     text-decoration: underline 1px solid;
                     text-underline-offset: 2px;
@@ -222,7 +227,7 @@
             .pass-container {
                 div {
                     div {
-                        margin-bottom: .5rem;
+                        margin-bottom: 0.5rem;
                     }
                 }
             }
@@ -233,8 +238,8 @@
             padding-top: 3rem;
             border: none;
             p {
-                font-size: .875rem;
-                letter-spacing: -.05rem;
+                font-size: 0.875rem;
+                letter-spacing: -0.05rem;
                 line-height: 1.25rem;
                 padding-bottom: 1.5rem;
             }
@@ -243,21 +248,21 @@
 
     /* Open state */
     &[aria-expanded="true"] {
-        .side-container {
-            transform: translateX(0);
-        }
         visibility: visible;
         opacity: 1;
         transition: opacity ease-in-out 0.2s;
+        .side-container {
+            transform: translateX(0);
+        }
     }
 
     /* Close state */
     &[aria-expanded="false"] {
+        opacity: 0;
+        transition: opacity ease-in-out 0.2s, visibility 0s 0.2s;
         .side-container {
             transform: translateX(100%);
         }
-        opacity: 0;
-        transition: opacity ease-in-out 0.2s, visibility 0s 0.2s;
     }
 }
 
@@ -270,16 +275,15 @@
     min-width: 100%;
     background-color: #fff;
     border-radius: 100vmax;
-    padding: .8125rem 2rem;
+    padding: 0.8125rem 2rem;
     border: 1px solid #000;
     font-size: 1rem;
-    letter-spacing: -.025rem;
+    letter-spacing: -0.025rem;
     line-height: 1.25rem;
     text-align: center;
-    transition:
-        box-shadow .3s cubic-bezier(.39,.575,.565,1),
-        color .3s cubic-bezier(.39,.575,.565,1),
-        background .3s cubic-bezier(.39,.575,.565,1);
+    transition: box-shadow 0.3s cubic-bezier(0.39, 0.575, 0.565, 1),
+        color 0.3s cubic-bezier(0.39, 0.575, 0.565, 1),
+        background 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 .-primary {
     background-color: #000 !important;

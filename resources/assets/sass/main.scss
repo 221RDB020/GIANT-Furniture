@@ -37,6 +37,7 @@ $breakpoint-xxl: 1400px;
     -moz-osx-font-smoothing: grayscale;
 
     --header-height: 5.5rem;
+    --header-height-sm: 4rem;
     --padding-side: 3.33333vw;
     --padding-side-lg: 12vw;
 }
@@ -59,7 +60,10 @@ body {
 }
 
 .-hero {
-    padding-top: var(--header-height);
+    padding-top: var(--header-height-sm);
+    @media (min-width: $breakpoint-md) {
+        padding-top: var(--header-height);
+    }
 }
 
 .-card {

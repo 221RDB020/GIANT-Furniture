@@ -16,8 +16,8 @@ trait Filterable
                 $value = explode(',', $value);
 
                 if ($field == 'price') {
-                    $builder->whereRaw('CAST(CASE WHEN discount > 0 THEN price * (1-discount) ELSE price END AS INTEGER) >= ?', [(int) $value[0]]);
-                    $builder->whereRaw('CAST(CASE WHEN discount > 0 THEN price * (1-discount) ELSE price END AS INTEGER) <= ?', [(int) $value[1]]);
+                    $builder->whereRaw('CAST(CASE WHEN discount > 0 THEN price * (1-discount) ELSE price END AS UNSIGNED) >= ?', [(int) $value[0]]);
+                    $builder->whereRaw('CAST(CASE WHEN discount > 0 THEN price * (1-discount) ELSE price END AS UNSIGNED) <= ?', [(int) $value[1]]);
                 } else {
                     $builder->where($field, '>=', (int) $value[0]);
                     $builder->where($field, '<=', (int) $value[1]);
@@ -29,8 +29,8 @@ trait Filterable
             if(in_array($field, $this->specificBetweenFilterFields)) {
                 $value = explode(',', $value);
 
-                $builder->whereRaw('CAST(json_extract(specification, "$.' . $field . '") AS INTEGER) >= ?', [(int)$value[0]]);
-                $builder->whereRaw('CAST(json_extract(specification, "$.' . $field . '") AS INTEGER) <= ?', [(int)$value[1]]);
+                $builder->whereRaw('CAST(json_extract(specification, "$.' . $field . '") AS UNSIGNED) >= ?', [(int)$value[0]]);
+                $builder->whereRaw('CAST(json_extract(specification, "$.' . $field . '") AS UNSIGNED) <= ?', [(int)$value[1]]);
             }
             if($field == 'color') {
                 $colors = explode(',', $value);

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->unsignedInteger('billing_total');
 
             // Shipping Information
-            $table->boolean('pick_up_at_warehouse')->default('false');
+            $table->boolean('pick_up_at_warehouse')->default(false);
             $table->boolean('shipped')->default(false);
 
             // Crypto Transaction Information
