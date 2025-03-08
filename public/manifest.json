@@ -1,11 +1,15 @@
 {
-    "name": "GIANT - mēbeles",
+    "name": "GIANT - furniture",
     "short_name": "GIANT",
+    "description": "Best quality furniture from Latvia.",
     "display": "standalone",
     "id": "/",
     "start_url": "http://127.0.0.1:8000",
-    "background_color": "#ffffff",
-    "theme_color": "#ffffff",
+    "background_color": "#fff",
+    "theme_color": "#fff",
+    "scope": ".",
+    "dir": "ltr",
+    "lang": "en-US",
     "icons": [
         {
             "src": "/assets/icon/icon-64.png",
