@@ -15,6 +15,22 @@ function menuToggleLeft() {
         mobileMenuToggleL.setAttribute('aria-expanded', 'true');
         body.style.overflow = 'clip';
     }
+
+    if (window.defferedPrompt) {
+        window.defferedPrompt.prompt();
+
+        window.defferedPrompt.userChoice.then((choiceResult) => {
+            console.log(choiceResult.outcome);
+
+            if (choiceResult.outcome === 'dismissed') {
+                console.log('User cancelled home screen install');
+            } else {
+                console.log('User added to home screen');
+            }
+        })
+
+        window.defferedPrompt = null;
+    }
 }
 
 function menuToggleRight() {
