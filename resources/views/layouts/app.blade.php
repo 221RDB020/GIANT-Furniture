@@ -18,7 +18,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts & CSS -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+{{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
+    <link rel="stylesheet" href="">
 
     <!-- Manifest -->
     <link rel="manifest" href="{{ asset('manifest.json') }}">

@@ -43,3 +43,7 @@ Route::group(['namespace' => 'MyGiant', 'prefix' => 'mygiant', 'middleware' => '
 
 Auth::routes();
 
+Route::fallback(function () {
+    return view('errors.404');
+});
+

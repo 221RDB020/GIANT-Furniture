@@ -40,9 +40,9 @@
             "form_factor": "narrow"
         },
         {
-            "src": "/assets/screenshots/1903x1054.png",
+            "src": "/assets/screenshots/1900x1069.png",
             "type": "image/png",
-            "sizes": "1903x1054",
+            "sizes": "1900x1069",
             "form_factor": "wide"
         }
     ]
