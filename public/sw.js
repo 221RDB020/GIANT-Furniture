@@ -1,16 +1,9 @@
-const CACHE_STATIC = 'giant-app-static-v1';
+const CACHE_STATIC = "giant-app-static-v1";
 const CACHE_DYNAMIC = 'giant-app-dynamic-v1';
-const STATIC_FILES = [
-    '/',
-    '/build/assets/app-5BjpYBM6.js',
-    '/build/assets/main-DaIUkcT8.css',
-    '/manifest.json',
-    '/status-pages/404.html',
-];
-
 const ROUTES_LIST = {
     '/categories/living-room': [
         '/categories/sofas',
+        '/categories/coffee-tables',
         '/categories/tv-stands',
         '/categories/bookshelves'
     ],
@@ -52,28 +45,45 @@ const ROUTES_LIST = {
     ]
 };
 
+function getAssets() {
+    return fetch('./build/manifest.json')
+        .then(res => res.json())
+        .then(manifest => {
+            return Object.values(manifest).map(entry => entry.file);
+        });
+}
 
 self.addEventListener('install', event => {
     event.waitUntil(
-        caches.open(CACHE_STATIC)
-            .then(cache => {
-                cache.addAll(STATIC_FILES);
-            })
-    )
+        Promise.all([
+            getAssets(),
+            caches.open(CACHE_STATIC)
+        ]).then(([assets, cache]) => {
+            const STATIC_FILES = [
+                '/',
+                '/manifest.json',
+                '/status-pages/404.html',
+                ...assets
+            ];
+            return cache.addAll(STATIC_FILES);
+        })
+    );
 });
 
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys()
             .then(keys => {
-                return Promise.all(keys.map(key => {
+                Promise.all(
+                    keys.map(key => {
                     if (key !== CACHE_STATIC && key !== CACHE_DYNAMIC) {
                         return caches.delete(key);
                     }
                 }));
             })
     );
-    return self.clients.claim();
+    self.clients.claim();
+    cacheRoutes(Object.keys(ROUTES_LIST));
 });
 
 self.addEventListener('fetch', event => {
@@ -82,6 +92,10 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(cached => {
+                if (ROUTES_LIST[requestUrl.pathname]) {
+                    cacheRoutes(ROUTES_LIST[requestUrl.pathname])
+                }
+
                 if (cached) return cached;
 
                 return fetch(event.request)
@@ -90,37 +104,33 @@ self.addEventListener('fetch', event => {
                             .then(cache => {
                                 if (event.request.url.startsWith('http://') || event.request.url.startsWith('https://')) {
                                     cache.put(event.request.url, res.clone());
-
-                                    if (ROUTES_LIST[requestUrl.pathname]) {
-                                        cacheSubRoutes(ROUTES_LIST[requestUrl.pathname]);
-                                    }
                                 }
                                 return res;
                             });
                     })
                     .catch(error => {
-                        if (event.request.headers.get('accept').includes('text/html')) {
-                            return caches.open(CACHE_STATIC)
-                                .then(cache => {
-                                    return cache.match('/status-pages/404.html')
-                                });
+                        if (event.request.headers.get('accept')?.includes('text/html')) {
+                            return caches.match('/status-pages/404.html')
                         }
                     });
             })
     );
 });
 
-async function cacheSubRoutes(routes) {
+async function cacheRoutes(routes) {
     const cache = await caches.open(CACHE_DYNAMIC);
 
     for (const route of routes) {
         try {
-            const res = await fetch(route, {mode: 'no-cors'});
-            if (res.ok || res.type === 'opaque') {
-                await cache.put(route, res.clone());
+            const cached = await cache.match(route);
+            if (!cached) {
+                const res = await fetch(route, {mode: 'no-cors'});
+                if (res.ok || res.type === 'opaque') {
+                    await cache.put(route, res.clone());
+                }
             }
         } catch (err) {
-            console.warn(`Failed to fetch route ${route}`, err);
+            console.log(`Failed to fetch route ${route}`, err);
         }
     }
 }
