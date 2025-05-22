@@ -8,23 +8,25 @@ const warehouseLocation = {
 };
 
 if (mapContainer && 'geolocation' in navigator) {
+    map = L.map('map').setView([warehouseLocation.lat, warehouseLocation.lng], 13);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    warehouseMarker = new L.Marker([warehouseLocation.lat, warehouseLocation.lng])
+        .addTo(map)
+        .bindPopup('GIANT Warehouse')
+        .openPopup();
+
     navigator.geolocation.getCurrentPosition((position) => {
         const currentLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
 
-        map = L.map('map').setView([currentLocation.lat, currentLocation.lng], 13);
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
-
-        warehouseMarker = new L.Marker([warehouseLocation.lat, warehouseLocation.lng])
-            .addTo(map)
-            .bindPopup('GIANT Warehouse')
-            .openPopup();
+        map.setView([currentLocation.lat, currentLocation.lng], 13);
 
         userMarker = L.marker([currentLocation.lat, currentLocation.lng])
             .addTo(map)
