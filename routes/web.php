@@ -5,6 +5,7 @@ use App\Http\Controllers\Cart\CartController;
 use App\Http\Controllers\Checkout\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\PushNotificationController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\Wishlist\WishlistController;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,6 @@ Route::group(['namespace' => 'MyGiant', 'prefix' => 'mygiant', 'middleware' => '
 
 Auth::routes();
 
-Route::fallback(function () {
-    return view('errors.404');
-});
+Route::post('/subscribe-to-notifications', [PushNotificationController::class, 'createSubscription'])->name('notifications.subscribe');
+Route::post('/notify', [PushNotificationController::class, 'sendNotification'])->name('notifications.send');
 

@@ -49,7 +49,7 @@ function getAssets() {
     return fetch('./build/manifest.json')
         .then(res => res.json())
         .then(manifest => {
-            return Object.values(manifest).map(entry => entry.file);
+            return Object.values(manifest).map(entry => '/build/' + entry.file);
         });
 }
 
@@ -66,6 +66,9 @@ self.addEventListener('install', event => {
                 ...assets
             ];
             return cache.addAll(STATIC_FILES);
+        })
+        .catch(error => {
+            console.log(error);
         })
     );
 });
@@ -134,3 +137,23 @@ async function cacheRoutes(routes) {
         }
     }
 }
+
+self.addEventListener('push', event => {
+    const notification = event.data.json();
+
+    event.waitUntil(
+        self.registration.showNotification(notification.title, {
+            body: notification.body,
+            icon: "/assets/icon/icon-192.png",
+            data: {
+                url: notification.url
+            }
+        })
+    )
+});
+
+self.addEventListener('notificationclick', event => {
+   event.waitUntil(
+       clients.openWindow(event.notification.data.url)
+   )
+});

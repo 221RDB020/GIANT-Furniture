@@ -11,12 +11,14 @@
         <meta name="msapplication-TileImage" content="{{ asset('/assets/icon/apple-icon-144.png') }}">
         <meta name="msapplication-TileColor" content="#fff">
         <meta name="theme-color" content="#fff">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title', config('app.name'))</title>
 
         <!-- Scripts & CSS -->
 {{--        @vite(['resources/assets/sass/main.scss', 'resources/assets/js/app.js'])--}}
-        <script src="{{ asset('build/assets/app-fyLoSdNR.js') }}"></script>
+        @vite('resources/assets/js/app.js')
+{{--        <script src="{{ asset('build/assets/app-Ch7oCq4z.js') }}"></script>--}}
         <link rel="stylesheet" href="{{ asset('build/assets/main-DaIUkcT8.css') }}">
 
         <!-- Manifest -->
