@@ -145,6 +145,9 @@ self.addEventListener('push', event => {
         self.registration.showNotification(notification.title, {
             body: notification.body,
             icon: "/assets/icon/icon-192.png",
+            lang: 'en-US',
+            vibrate: [200, 50, 200],
+            badge: '/assets/icon/apple-icon-114.png',
             data: {
                 url: notification.url
             }
