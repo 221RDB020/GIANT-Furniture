@@ -153,7 +153,19 @@ self.addEventListener('push', event => {
 });
 
 self.addEventListener('notificationclick', event => {
-   event.waitUntil(
-       clients.openWindow(event.notification.data.url)
-   )
+    event.waitUntil(
+        clients.matchAll()
+            .then(clients => {
+                let client = clients.find(c => {
+                    return c.visibilityState === 'visible';
+                });
+                if (client !== undefined) {
+                    client.navigate(event.notification.data.url);
+                    client.focus();
+                } else {
+                    clients.openWindow(event.notification.data.url);
+                }
+                event.notification.close();
+            })
+    );
 });

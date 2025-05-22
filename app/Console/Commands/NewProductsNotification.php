@@ -50,7 +50,7 @@ class NewProductsNotification extends Command
         $payload = json_encode([
             'title' => 'New Arrivals!',
             'body' => 'Check out the latest items in our shop.',
-            'url' => '/'
+            'url' => 'http://localhost:8000/',
         ]);
 
         $notifications = PushNotification::all();
