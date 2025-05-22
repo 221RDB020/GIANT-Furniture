@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\PushNotificationController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\Warehouse\WarehouseController;
 use App\Http\Controllers\Wishlist\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::put('/cart', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.remove');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+Route::get('/warehouses', [WarehouseController::class, 'index'])->name('warehouse.index');
 
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
 Route::post('/wishlist', [WishlistController::class, 'store'])->name('wishlist.add');

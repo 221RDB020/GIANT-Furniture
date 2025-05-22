@@ -16,10 +16,12 @@
         <title>@yield('title', config('app.name'))</title>
 
         <!-- Scripts & CSS -->
-{{--        @vite(['resources/assets/sass/main.scss', 'resources/assets/js/app.js'])--}}
         @vite('resources/assets/js/app.js')
-{{--        <script src="{{ asset('build/assets/app-Ch7oCq4z.js') }}"></script>--}}
-        <link rel="stylesheet" href="{{ asset('build/assets/main-DaIUkcT8.css') }}">
+        @vite('resources/assets/sass/main.scss')
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+              integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+              crossorigin=""/>
 
         <!-- Manifest -->
         <link rel="manifest" href="{{ asset('manifest.json') }}">
@@ -41,5 +43,8 @@
     <div class="app">
         @yield('content')
     </div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
     </body>
 </html>

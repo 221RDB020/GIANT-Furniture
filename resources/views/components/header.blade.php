@@ -52,7 +52,7 @@
                 @endforeach
             </div>
             <div class="secondary-options">
-                <a href="">Find a Warehouse</a>
+                <a href="{{ route('warehouse.index') }}" id="find-warehouse">Find a Warehouse</a>
                 <a href="">Can we help you?</a>
             </div>
         </aside>
