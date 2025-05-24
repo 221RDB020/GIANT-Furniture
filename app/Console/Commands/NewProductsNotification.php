@@ -2,10 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Product;
 use App\Models\PushNotification;
 use Illuminate\Console\Command;
-use Illuminate\Routing\Route;
 use Minishlink\WebPush\Subscription;
 use Minishlink\WebPush\WebPush;
 
@@ -31,12 +29,6 @@ class NewProductsNotification extends Command
      */
     public function handle(): void
     {
-//        $newProducts = Product::where('created_at', '>=', now()->subMinutes(10))->get();
-//
-//        if ($newProducts->isEmpty()) {
-//            return;
-//        }
-
         $auth = [
             'VAPID' => [
                 'subject' => 'mailto:janis.zogots@edu.rtu.lv',
