@@ -1,11 +1,12 @@
 ## How to start
 
-0.ja nav, jāuzinstalē composer un npm
+0.ja nav, jāinstalē composer un npm
 
 1.composer install
 2.npm install
-3.pirmajā konsolē npm run dev
-4.otrajā konsolē php artisan serve
+3.npm run build
+4.php artisan migrate:fresh --seed
+5.php artisan serve
 
 testa profili
 admin@admin.com admin -administrators
